@@ -17,21 +17,22 @@ export class App {
 			-1000,
 			1000
 		)
-		this.camera.position.set(1, 1, 1);
-		this.camera.zoom = 60
+		
+		this.camera.position.set(1.5, 0.4, 1);
+		this.camera.zoom = 80
 		this.camera.lookAt(0, 0, 0);
 
 		this.control = new OrbitControls(this.camera, this.container);
-		// ## Renderer's config
+		
 		this.renderer = new WebGLRenderer({
 			antialias: true,
 		})
 		this.renderer.setPixelRatio(window.devicePixelRatio);
 
-		// sRGBEncoding
+		
 		this.renderer.outputEncoding = sRGBEncoding;
 
-		// ## Light's config
+		
 		this.renderer.physicallyCorrectLights = true;
 
 		this.container.appendChild(this.renderer.domElement);
