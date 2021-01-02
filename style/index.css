@@ -16,3 +16,26 @@ body {
 canvas {
 	display: block;
 }
+
+#title, #subtitle {
+	position: absolute;
+	text-align: center;
+	width: 100%;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 4rem;
+	color: white;
+	text-shadow: 2px 2px black;
+}
+
+#title{
+	top: 10%;
+}
+#subtitle{
+	top: 70%;
+}
+
+
+
+.noselect{
+	user-select: none;
+}
