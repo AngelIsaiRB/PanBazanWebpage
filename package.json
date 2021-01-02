@@ -1,0 +1,20 @@
+{
+  "name": "three-template",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "webpack-dev-server --open",
+    "build": "webpack --mode=production"
+  },
+  "dependencies": {
+    "eventemitter3": "^4.0.4",
+    "three": "^0.124.0",
+    "three-gltf-loader": "^1.111.0"
+  },
+  "devDependencies": {
+    "copy-webpack-plugin": "^6.0.2",
+    "html-webpack-plugin": "^4.3.0",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.11.0"
+  }
+}
