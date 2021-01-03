@@ -32,7 +32,8 @@ module.exports = {
 				{
 					from: './style',
 					to: 'style'
-				}
+				},
+				
 			]
 		}
 		),
