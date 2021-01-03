@@ -5,6 +5,7 @@
 
 body {
 	background-color: darkslategray;
+	
 }
 
 #game-container {
@@ -16,7 +17,12 @@ body {
 canvas {
 	display: block;
 }
-
+.h1title{
+	
+	letter-spacing: 20px;
+	background-color:rgba(255, 255, 255, 0.034);
+	font-weight: bold;
+}
 #title, #subtitle {
 	position: absolute;
 	text-align: center;
@@ -28,14 +34,33 @@ canvas {
 }
 
 #title{
-	top: 10%;
+	top: 5%;
+	
 }
 #subtitle{
-	top: 70%;
+	top: 80%;
 }
 
 
 
 .noselect{
 	user-select: none;
+}
+
+.demo {
+	visibility:hidden;	
+}
+
+.demo div {
+	
+	position:absolute;
+	display:inline-block;
+	/* left:50%; */
+	/* top:50%; */
+	font-weight:800;
+	font-size:60px;
+	color:white;
+	transform:translate(-50%, -50%);
+	width:100%;
+	text-align:center;
 }

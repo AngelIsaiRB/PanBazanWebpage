@@ -119,8 +119,8 @@ class Scene1 extends Scene {
 			// 	.easing(TWEEN.Easing.Quadratic.Out).start();
 			// });		
 			// camera_up.start();	
-			this.groups.rotation.x=x/2000;
-			this.groups.rotation.y=y/2000;
+			this.groups.rotation.x=x/3000;
+			this.groups.rotation.y=y/3000;
 		});
 	}
 }
