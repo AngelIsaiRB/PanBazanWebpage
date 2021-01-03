@@ -1,6 +1,7 @@
 import { Scene, Color, DirectionalLight, HemisphereLight, TextureLoader, MeshStandardMaterial, Mesh, PointLightHelper, DirectionalLightHelper, MathUtils, AmbientLight, Group, SpotLight } from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-
+import Observer, { EVENTS } from '../Observer';
+import * as TWEEN from "@tweenjs/tween.js/dist/tween.amd";
 
 
 
@@ -9,13 +10,14 @@ class Scene1 extends Scene {
 		super();
 		this.background = new Color('black').convertSRGBToLinear();
 		this.create();
+		this.events();
 	}
 	
 	create() {
 		// Rosca
 		const textureLoader = new TextureLoader();
 		textureLoader.setPath("./assets/textures/");
-		const baseColor = textureLoader.load("texturepan - copia.jpg"); 
+		const baseColor = textureLoader.load("texturepan2.jpg"); 
 		const pastaTexture = textureLoader.load("pasta-texture.jpg"); 
 		const tiraRoja = textureLoader.load("tira-red.jpg"); 
 		const tiraVerde = textureLoader.load("tira-texture.jpg"); 
@@ -46,12 +48,15 @@ class Scene1 extends Scene {
 			const t7 = gltf.scene.children[16];
 			const t8 = gltf.scene.children[17];
 			const t9 = gltf.scene.children[18];
-			roscaBottom.material.map=baseColor;
-			p1.material.map=pastaTexture;
+			roscaBottom.material.map=baseColor;			
+			p1.material.map=pastaTexture;			
 			rosca.material.map=baseColor;
+			
 			t1.material.map= tiraRoja;
 			t2.material.map= tiraVerde;
 			// rosca.scale.set(1,1,1);
+			
+
 			this.groups.add(rosca,roscaBottom,p1,p2,p3,p4,p5,p6,t1,t2,t3,t4,t5,t6,t7,t8,t9);
 			this.add(this.groups)
 		  	// cube.position.x=100;
@@ -62,7 +67,7 @@ class Scene1 extends Scene {
 		
 
 		// luces#f39f18 
-		const ambientLight = new HemisphereLight( 0x0000ff, 0x00ff00, 0.6 ); 
+		const ambientLight = new HemisphereLight( 0x0000ff, 0x00ff00, 2 ); 
 		const light = new DirectionalLight( 0xf4f4f4, 6.0);		
 		const ligh2 = new DirectionalLight( 0xf4f4f4, 0.5);		
 		const lighL = new DirectionalLight( 0xf4f4f4, 0.1);		
@@ -75,7 +80,7 @@ class Scene1 extends Scene {
 		lighF.position.set(0,0,-8)		
 		lighFF.position.set(0,0,8)		
 		
-		const spotLight = new SpotLight( 0xffffff,15 );
+		const spotLight = new SpotLight( 0xffffff,30 );
 		spotLight.position.set(4, 4, 4 );
 
 		spotLight.castShadow = true;
@@ -92,6 +97,31 @@ class Scene1 extends Scene {
 
 	update() {
 		this.groups.rotateY(0.001);
+		TWEEN.update();
+	}
+	events(){
+		
+		Observer.on(EVENTS.MOVE_MOUSE,(x,y)=>{		
+			const actualx=this.groups.position.x;
+			const actualy=this.groups.position.y;
+			// const camera_up = new TWEEN.Tween(this.groups.rotation)
+			// .to({				
+			// 	x:x/1000,
+			// 	y:y/1000,
+			// },400)
+			// .easing(TWEEN.Easing.Sinusoidal.In)
+			// .onComplete(()=>{
+			// 	new TWEEN.Tween(this.groups.rotation)
+			// 	.to({				
+			// 		x:actualx,
+			// 		y:actualy,
+			// 	},200)
+			// 	.easing(TWEEN.Easing.Quadratic.Out).start();
+			// });		
+			// camera_up.start();	
+			this.groups.rotation.x=x/2000;
+			this.groups.rotation.y=y/2000;
+		});
 	}
 }
 

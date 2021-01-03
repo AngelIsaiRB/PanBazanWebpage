@@ -2,6 +2,8 @@ import { PerspectiveCamera, Vector3, WebGLRenderer, sRGBEncoding, OrthographicCa
 import Scene1 from './scenes/Scene1';
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import Observer, { EVENTS } from './Observer';
+import * as TWEEN from "@tweenjs/tween.js/dist/tween.amd";
 export class App {
 	constructor(container) {
 		this.container = container;
@@ -25,7 +27,7 @@ export class App {
 		this.control = new OrbitControls(this.camera, this.container);
 		
 		this.renderer = new WebGLRenderer({
-			antialias: true,
+			antialias: true,			
 		})
 		this.renderer.setPixelRatio(window.devicePixelRatio);
 
@@ -40,6 +42,11 @@ export class App {
 		  
 		this.onResize();
 		this.render();
+		this.events();
+	}
+
+	events(){
+		
 	}
 
 	onResize() {
