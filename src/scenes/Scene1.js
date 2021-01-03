@@ -1,7 +1,6 @@
 import { Scene, Color, DirectionalLight, HemisphereLight, TextureLoader, MeshStandardMaterial, Mesh, PointLightHelper, DirectionalLightHelper, MathUtils, AmbientLight, Group, SpotLight } from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-import BoxCreator from '../objects/BoxCreator';
-import { Cube } from '../objects/Cube';
+
 
 
 
@@ -15,7 +14,7 @@ class Scene1 extends Scene {
 	create() {
 		// Rosca
 		const textureLoader = new TextureLoader();
-		textureLoader.setPath("./src/assets/textures/");
+		textureLoader.setPath("./assets/textures/");
 		const baseColor = textureLoader.load("texturepan - copia.jpg"); 
 		const pastaTexture = textureLoader.load("pasta-texture.jpg"); 
 		const tiraRoja = textureLoader.load("tira-red.jpg"); 
@@ -25,10 +24,11 @@ class Scene1 extends Scene {
 			map:baseColor,
 			
 		});
-		
+		// comentario
+		// 
 		this.groups = new Group();
 		let loader = new GLTFLoader();
-		loader.load('./src/assets/Rosca.gltf', (gltf)=>{			
+		loader.load('./assets/Rosca.gltf', (gltf)=>{			
 			const rosca = gltf.scene.children[2];
 			const roscaBottom = gltf.scene.children[3];
 			const p1 = gltf.scene.children[4];
