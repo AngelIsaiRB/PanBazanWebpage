@@ -19,9 +19,9 @@ export class App {
 			-1000,
 			1000
 		)
-		console.log(this.container.clientWidth)
+		
 		this.camera.position.set(1.5, 0.4, 1);
-		this.camera.zoom = 80
+		(this.container.clientWidth>1000) ? this.camera.zoom = 80 : this.camera.zoom =50
 		this.camera.lookAt(0, 0, 0);
 
 		this.control = new OrbitControls(this.camera, this.container);
