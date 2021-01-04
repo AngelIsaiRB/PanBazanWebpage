@@ -17,8 +17,10 @@ class Scene1 extends Scene {
 		// Rosca
 		const textureLoader = new TextureLoader();
 		textureLoader.setPath("./assets/textures/");
-		const baseColor = textureLoader.load("texturepan2.jpg"); 
-		const pastaTexture = textureLoader.load("pasta-texture.jpg"); 
+		const baseColor = textureLoader.load("texturepan3.jpg"); 
+		const baseNormal = textureLoader.load("texture3Spe.png"); 
+		const pastaTexture = textureLoader.load("vanilla2.jpg"); 
+		const pastaTexturechoco = textureLoader.load("choco2.jpg"); 			
 		const tiraRoja = textureLoader.load("tira-red.jpg"); 
 		const tiraVerde = textureLoader.load("tira-texture.jpg"); 
 		const material_standar = new  MeshStandardMaterial({    			
@@ -49,10 +51,14 @@ class Scene1 extends Scene {
 			const t8 = gltf.scene.children[17];
 			const t9 = gltf.scene.children[18];
 			roscaBottom.material.map=baseColor;			
+			roscaBottom.material.normalMap=baseNormal;									
 			p1.material.map=pastaTexture;			
-			rosca.material.map=baseColor;
+			p2.material.map=pastaTexturechoco;			
+			// p1.material.normalMap=pastaTextureNormal;						
 			
 			t1.material.map= tiraRoja;
+				
+
 			t2.material.map= tiraVerde;
 			// rosca.scale.set(1,1,1);
 			
@@ -70,18 +76,18 @@ class Scene1 extends Scene {
 		const ambientLight = new HemisphereLight( 0x0000ff, 0x00ff00, 2 ); 
 		const light = new DirectionalLight( 0xf4f4f4, 6.0);		
 		const ligh2 = new DirectionalLight( 0xf4f4f4, 0.5);		
-		const lighL = new DirectionalLight( 0xf4f4f4, 0.1);		
-		const lighR = new DirectionalLight( 0xf4f4f4, 0.1);		
-		const lighF = new DirectionalLight( 0xf4f4f4, 0.1);		
-		const lighFF = new DirectionalLight(0xf4f4f4, 0.1);		
+		const lighL = new DirectionalLight( 0xf4f4f4, 0.3);		
+		const lighR = new DirectionalLight( 0xf4f4f4, 0.3);		
+		const lighF = new DirectionalLight( 0xf4f4f4, 0.3);		
+		const lighFF = new DirectionalLight(0xf4f4f4, 0.3);		
 		ligh2.position.set(0,-4,0)		
 		lighL.position.set(-7,0,0)		
 		lighR.position.set(7,0,0)		
 		lighF.position.set(0,0,-8)		
 		lighFF.position.set(0,0,8)		
 		
-		const spotLight = new SpotLight( 0xffffff,30 );
-		spotLight.position.set(4, 4, 4 );
+		const spotLight = new SpotLight( 0xffffff,60 );
+		spotLight.position.set(15, 15, 15 );
 
 		spotLight.castShadow = true;
 
@@ -91,12 +97,13 @@ class Scene1 extends Scene {
 		spotLight.shadow.camera.near = 500;
 		spotLight.shadow.camera.far = 4000;
 		spotLight.shadow.camera.fov = 35;
-		this.add( spotLight,ligh2, lighL,lighR,lighF,lighFF);
+		this.add(spotLight,ligh2, lighL,lighR,lighF,lighFF);
 		
 	}
 
 	update() {
 		this.groups.rotateY(0.001);
+		
 		TWEEN.update();
 	}
 	events(){
