@@ -68,11 +68,25 @@ class Scene1 extends Scene {
 			this.groups.scale.x=12;
 			this.groups.scale.y=12;
 			this.groups.scale.z=12;
-			this.add(this.groups)
+			this.add(this.groups);
+			if(this.zoomin){
+			
+				const camera_up = new TWEEN.Tween(this.groups.scale)
+				.to({				
+					x:1,
+					y:1,
+					z:1
+				},1000)
+				.easing(TWEEN.Easing.Sinusoidal.In)
+				.onComplete(()=>{
+					this.zoomin=false;
+				});		
+				camera_up.start();	
+			}
 		  	// cube.position.x=100;
 			// this.add(gltf.scene);
 			
-		  });
+		  },);
 
 		
 
@@ -101,25 +115,12 @@ class Scene1 extends Scene {
 		spotLight.shadow.camera.near = 500;
 		spotLight.shadow.camera.far = 4000;
 		spotLight.shadow.camera.fov = 35;
-		this.add(spotLight,ligh2, lighL,lighR,lighF,lighFF);
+		this.add(spotLight, lighL,lighR,lighF,lighFF);
 		
 	}
 
 	update() {
-		if(this.zoomin){
-			console.log(this.groups.scale)
-			const camera_up = new TWEEN.Tween(this.groups.scale)
-			.to({				
-				x:1,
-				y:1,
-				z:1
-			},1000)
-			.easing(TWEEN.Easing.Sinusoidal.In)
-			.onComplete(()=>{
-				this.zoomin=false;
-			});		
-			camera_up.start();	
-		}
+		
 		this.groups.rotateY(0.001);		
 		TWEEN.update();
 	}
