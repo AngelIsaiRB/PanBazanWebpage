@@ -9,6 +9,7 @@ class Scene1 extends Scene {
 	constructor() {
 		super();
 		this.background = new Color('black').convertSRGBToLinear();
+		this.zoomin=true;
 		this.create();
 		this.events();
 	}
@@ -64,6 +65,9 @@ class Scene1 extends Scene {
 			
 
 			this.groups.add(rosca,roscaBottom,p1,p2,p3,p4,p5,p6,t1,t2,t3,t4,t5,t6,t7,t8,t9);
+			this.groups.scale.x=12;
+			this.groups.scale.y=12;
+			this.groups.scale.z=12;
 			this.add(this.groups)
 		  	// cube.position.x=100;
 			// this.add(gltf.scene);
@@ -102,8 +106,21 @@ class Scene1 extends Scene {
 	}
 
 	update() {
-		this.groups.rotateY(0.001);
-		
+		if(this.zoomin){
+			console.log(this.groups.scale)
+			const camera_up = new TWEEN.Tween(this.groups.scale)
+			.to({				
+				x:1,
+				y:1,
+				z:1
+			},1000)
+			.easing(TWEEN.Easing.Sinusoidal.In)
+			.onComplete(()=>{
+				this.zoomin=false;
+			});		
+			camera_up.start();	
+		}
+		this.groups.rotateY(0.001);		
 		TWEEN.update();
 	}
 	events(){
