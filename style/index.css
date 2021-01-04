@@ -26,7 +26,7 @@ canvas {
 	background-color:rgba(255, 255, 255, 0.082);
 	font-weight: bold;
 }
-#title, #subtitle {
+#title, #subtitle ,#btngo{
 	position: absolute;
 	text-align: center;
 	width: 100%;
@@ -35,13 +35,26 @@ canvas {
 	color: white;
 	text-shadow: 2px 2px black;
 }
-
+#btngo{
+	top:80%
+}
+#btngo a{
+	padding: 10px 20px;
+	background:none;
+	color: white;
+	border: 1px solid white;
+	border-radius: 3px;
+	font-size: 3rem;
+	text-shadow: 2px 2px black;
+	cursor: pointer;
+	box-shadow: 2px 2px black, 2px 2px black inset;
+}
 #title{
 	top: 5%;
 	
 }
 #subtitle{
-	top: 80%;
+	top: 70%;
 }
 
 
