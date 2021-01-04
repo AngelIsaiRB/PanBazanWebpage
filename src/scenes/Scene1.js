@@ -32,7 +32,16 @@ class Scene1 extends Scene {
 		// comentario
 		// 
 		this.groups = new Group();
+		this.groupmono = new Group();
 		let loader = new GLTFLoader();
+		
+		loader.load("./assets/mono.gltf",(gltf)=>{
+			const mono = gltf.scene.children[3];
+			mono.position.y=5
+			mono.scale.set(.05,.05,.05);
+			this.groupmono.add(mono);
+			this.add(this.groupmono);
+		});
 		loader.load('./assets/Rosca.gltf', (gltf)=>{			
 			const rosca = gltf.scene.children[2];
 			const roscaBottom = gltf.scene.children[3];
@@ -104,8 +113,8 @@ class Scene1 extends Scene {
 		lighF.position.set(0,0,-8)		
 		lighFF.position.set(0,0,8)		
 		
-		const spotLight = new SpotLight( 0xffffff,60 );
-		spotLight.position.set(15, 15, 15 );
+		const spotLight = new SpotLight( 0xffffaf,60 );
+		spotLight.position.set(14, 14, 14 );
 
 		spotLight.castShadow = true;
 
@@ -115,12 +124,17 @@ class Scene1 extends Scene {
 		spotLight.shadow.camera.near = 500;
 		spotLight.shadow.camera.far = 4000;
 		spotLight.shadow.camera.fov = 35;
+		
 		this.add(spotLight, lighL,lighR,lighF,lighFF);
 		
 	}
 
 	update() {
-		
+		this.groupmono.position.y+=-0.01;
+		this.groupmono.rotateY(0.05);		
+		if(this.groupmono.position.y<-12){
+			this.remove(this.groupmono);
+		}
 		this.groups.rotateY(0.001);		
 		TWEEN.update();
 	}

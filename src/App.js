@@ -25,6 +25,7 @@ export class App {
 		this.camera.lookAt(0, 0, 0);
 
 		this.control = new OrbitControls(this.camera, this.container);
+		this.control.enableZoom=false;
 		
 		this.renderer = new WebGLRenderer({
 			antialias: true,			
