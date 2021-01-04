@@ -8,7 +8,7 @@ import * as TWEEN from "@tweenjs/tween.js/dist/tween.amd";
 class Scene1 extends Scene {
 	constructor() {
 		super();
-		this.background = new Color('black').convertSRGBToLinear();
+		this.background = new Color("black").convertSRGBToLinear();
 		this.zoomin=true;
 		this.create();
 		this.events();
