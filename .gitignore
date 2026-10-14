@@ -2,3 +2,6 @@
 /dist
 *.log
 .DS_Store
+
+# Fotos originales del negocio (el sitio usa las copias optimizadas en src/assets)
+/infomacion_negocio

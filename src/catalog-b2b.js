@@ -60,17 +60,17 @@ function tarjeta(pan) {
 			<div class="relative aspect-square overflow-hidden rounded-[1.75rem] bg-[#ebe6df] shadow-[0_20px_40px_-28px_rgb(42_24_16/0.5)]">
 				<img src="${src}" alt="${alt}" width="900" height="900" loading="lazy" decoding="async"
 					class="size-full object-cover transition-transform duration-700 ease-horno group-hover:scale-[1.06]" />
-				${pan.tamano ? `<span class="absolute top-3 left-3 rounded-full bg-crema/90 px-3 py-1 text-[0.68rem] font-semibold tracking-wide text-tinta/80 uppercase backdrop-blur">${pan.tamano}</span>` : ''}
-				${pan.temporada ? '<span class="absolute top-3 right-3 rounded-full bg-ate px-3 py-1 text-[0.68rem] font-semibold tracking-wide text-crema uppercase shadow-md">Solo en temporada</span>' : ''}
+				${pan.tamano ? `<span class="absolute top-3 left-3 rounded-full bg-papel/90 px-3 py-1 text-[0.68rem] font-semibold tracking-wide text-tinta/80 uppercase backdrop-blur">${pan.tamano}</span>` : ''}
+				${pan.temporada ? '<span class="absolute top-3 right-3 rounded-full bg-ate px-3 py-1 text-[0.68rem] font-semibold tracking-wide text-papel uppercase shadow-md">Solo en temporada</span>' : ''}
 				${pan.ilustracion && !pan.temporada ? '<span class="absolute top-3.5 right-4 hidden text-[0.65rem] font-medium tracking-wide text-tinta/45 uppercase sm:block">Ilustración</span>' : ''}
-				<p class="absolute right-3 bottom-3 flex items-baseline gap-1 rounded-full bg-cacao px-3.5 py-1.5 text-crema shadow-lg">
-					<span class="font-display text-lg leading-none font-semibold sm:text-xl">${precioMXN.format(pan.precio)}</span>
-					<span class="text-[0.62rem] font-semibold tracking-wide text-crema/70">MXN c/u</span>
+				<p class="absolute right-3 bottom-3 flex items-baseline gap-1 rounded-full bg-cacao px-3.5 py-1.5 text-papel shadow-lg">
+					<span class="font-display text-lg leading-none sm:text-xl">${precioMXN.format(pan.precio)}</span>
+					<span class="text-[0.62rem] font-semibold tracking-wide text-papel/70">MXN c/u</span>
 				</p>
 			</div>
 			<div class="mt-4 px-1">
-				<p class="text-[0.68rem] font-semibold tracking-[0.18em] text-barro uppercase">${nombreCategoria[pan.categoria]}</p>
-				<h3 class="mt-1.5 font-display text-lg leading-snug font-medium text-cacao sm:text-xl">${pan.nombre}</h3>
+				<p class="text-[0.68rem] font-semibold tracking-[0.18em] text-ate uppercase">${nombreCategoria[pan.categoria]}</p>
+				<h3 class="mt-1.5 font-display text-lg leading-snug text-cacao sm:text-xl">${pan.nombre}</h3>
 				<p class="mt-1.5 text-sm leading-relaxed text-tinta/65">${pan.descripcion}</p>
 			</div>
 		</article>`;
@@ -81,9 +81,9 @@ function chip(id, nombre, total) {
 	return `
 		<button type="button" data-categoria="${id}" aria-pressed="${activo}"
 			class="inline-flex h-11 shrink-0 items-center gap-2 rounded-full border px-4 text-sm font-medium whitespace-nowrap transition-colors duration-300
-			${activo ? 'border-cacao bg-cacao text-crema' : 'border-tinta/15 bg-white/50 text-tinta/80 hover:border-tinta/40 hover:text-tinta'}">
+			${activo ? 'border-cacao bg-cacao text-papel' : 'border-tinta/15 bg-white/50 text-tinta/80 hover:border-tinta/40 hover:text-tinta'}">
 			${nombre}
-			<span class="text-xs ${activo ? 'text-crema/60' : 'text-tinta/45'}">${total}</span>
+			<span class="text-xs ${activo ? 'text-papel/60' : 'text-tinta/45'}">${total}</span>
 		</button>`;
 }
 
@@ -130,18 +130,18 @@ function renderPizarron() {
 				(p) => `
 				<li class="flex items-baseline gap-3 py-2.5">
 					<span>
-						${p.nombre}${tamanoExtra(p) ? ` <span class="text-sm text-crema/50">(${p.tamano.toLowerCase()})</span>` : ''}
-						${p.temporada ? '<span class="ml-1 inline-block rounded-full border border-maiz/50 px-2 py-0.5 align-middle text-[0.62rem] font-semibold tracking-wide whitespace-nowrap text-maiz uppercase">Solo en temporada</span>' : ''}
+						${p.nombre}${tamanoExtra(p) ? ` <span class="text-sm text-papel/50">(${p.tamano.toLowerCase()})</span>` : ''}
+						${p.temporada ? '<span class="ml-1 inline-block rounded-full border border-kraft/50 px-2 py-0.5 align-middle text-[0.62rem] font-semibold tracking-wide whitespace-nowrap text-kraft uppercase">Solo en temporada</span>' : ''}
 					</span>
-					<span class="min-w-6 flex-1 -translate-y-1 border-b border-dotted border-crema/25" aria-hidden="true"></span>
-					<span class="font-display text-xl font-medium text-maiz">${precioMXN.format(p.precio)}</span>
+					<span class="min-w-6 flex-1 -translate-y-1 border-b border-dotted border-papel/25" aria-hidden="true"></span>
+					<span class="font-display text-xl text-kraft">${precioMXN.format(p.precio)}</span>
 				</li>`,
 			)
 			.join('');
 		return `
 			<div class="mb-12 break-inside-avoid">
-				<h3 class="font-display text-2xl text-crema italic">${c.nombre}</h3>
-				<ul class="mt-3 border-t border-crema/15">${items}</ul>
+				<h3 class="font-display text-2xl text-kraft">${c.nombre}</h3>
+				<ul class="mt-3 border-t border-papel/15">${items}</ul>
 			</div>`;
 	}).join('');
 }

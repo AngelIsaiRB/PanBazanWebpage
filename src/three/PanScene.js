@@ -25,6 +25,8 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 import gsap from 'gsap';
 
+import { crearConchas } from './panes.js';
+import { crearPanDeMuerto } from './panDeMuerto.js';
 import roscaUrl from '../assets/Rosca.gltf?url';
 import breadColorUrl from '../assets/textures/bread-color.jpg';
 import breadNormalUrl from '../assets/textures/bread-normal.jpg';
@@ -36,12 +38,14 @@ import ateVerdeUrl from '../assets/textures/ate-verde.jpg';
 const CAMERA_DIRECTION = new Vector3(1.5, 0.95, 1).normalize();
 const AUTO_ROTATE_SPEED = 0.12; // rad/s
 const TILT_STRENGTH = 0.18; // rad
+// Cada pan se escala a este radio para que la cámara no tenga que moverse al cambiar
+const RADIO = 1;
 
 /**
- * Escena de la Rosca de Reyes. Se monta dentro de `container`,
- * se ajusta a su tamaño y solo renderiza mientras está visible.
+ * Escena 3D de los panes (pan de muerto, rosca y conchas). Se monta dentro de
+ * `container`, se ajusta a su tamaño y solo renderiza mientras está visible.
  */
-export class RoscaScene {
+export class PanScene {
 	constructor(container, { reducedMotion = false, onLoad } = {}) {
 		this.container = container;
 		this.reducedMotion = reducedMotion;
@@ -49,6 +53,8 @@ export class RoscaScene {
 		this.pointer = { x: 0, y: 0 };
 		this.timer = new Timer();
 		this.visible = true;
+		this.models = {};
+		this.current = null;
 
 		this.scene = new Scene();
 		this.camera = new PerspectiveCamera(30, 1, 0.1, 200);
@@ -96,7 +102,7 @@ export class RoscaScene {
 		this.visibilityObserver.observe(container);
 
 		this.onResize();
-		this.loadModel();
+		this.loadModels();
 		this.renderer.setAnimationLoop((t) => this.tick(t));
 	}
 
@@ -109,24 +115,24 @@ export class RoscaScene {
 		this.scene.add(hemi, key, rim);
 	}
 
-	async loadModel() {
+	async loadModels() {
 		const textures = new TextureLoader();
-		const load = (url, { color = true, repeat = 1 } = {}) => {
-			const tex = textures.load(url);
+		const setup = (tex, { color = true } = {}) => {
 			tex.flipY = false;
 			tex.wrapS = tex.wrapT = RepeatWrapping;
-			tex.repeat.set(repeat, repeat);
 			tex.anisotropy = Math.min(8, this.renderer.capabilities.getMaxAnisotropy());
 			if (color) tex.colorSpace = SRGBColorSpace;
 			return tex;
 		};
+		const load = (url, options) => setup(textures.load(url), options);
+		// La miga se espera completa: los panes procedurales la clonan con otra repetición
+		const [breadMap, breadNormal] = await Promise.all([
+			textures.loadAsync(breadColorUrl).then((tex) => setup(tex)),
+			textures.loadAsync(breadNormalUrl).then((tex) => setup(tex, { color: false })),
+		]);
 
 		const finishes = {
-			'Material.001': {
-				map: load(breadColorUrl),
-				normalMap: load(breadNormalUrl, { color: false }),
-				roughness: 0.55,
-			},
+			'Material.001': { map: breadMap, normalMap: breadNormal, roughness: 0.55 },
 			pasta: { map: load(conchaVainillaUrl), roughness: 0.85 },
 			chocolate: { map: load(conchaChocolateUrl), roughness: 0.8 },
 			tiraRed: { map: load(ateRojoUrl), roughness: 0.28 },
@@ -134,9 +140,8 @@ export class RoscaScene {
 		};
 
 		const gltf = await new GLTFLoader().loadAsync(roscaUrl);
-		const model = gltf.scene;
-
-		model.traverse((obj) => {
+		const rosca = gltf.scene;
+		rosca.traverse((obj) => {
 			if (!obj.isMesh) return;
 			const finish = finishes[obj.material.name];
 			obj.material.metalness = 0; // glTF trae metallicFactor = 1 por defecto
@@ -144,21 +149,67 @@ export class RoscaScene {
 			obj.material.needsUpdate = true;
 		});
 
-		// Centrar y encuadrar
-		const box = new Box3().setFromObject(model);
-		const center = box.getCenter(new Vector3());
-		model.position.sub(center);
-		this.radius = box.getBoundingSphere(new Sphere()).radius;
+		// El pan de muerto y las conchas se modelan aquí mismo, sin archivos extra
+		const breads = { breadMap, breadNormal };
+		this.models = {
+			muerto: this.prepare(crearPanDeMuerto(breads), 1.15),
+			rosca: this.prepare(rosca),
+			concha: this.prepare(crearConchas(breads), 1.2),
+		};
 
-		this.spinner.add(model);
-		this.spinner.add(this.createContactShadow(box, center));
 		this.frame();
-
+		this.current = 'muerto';
+		this.spinner.add(this.models.muerto);
 		this.onLoad?.();
 
 		if (this.reducedMotion) return;
-		gsap.from(this.spinner.scale, { x: 0.35, y: 0.35, z: 0.35, duration: 1.8, ease: 'expo.out' });
+		gsap.from(this.models.muerto.scale, { x: 0, y: 0, z: 0, duration: 1.8, ease: 'expo.out' });
 		gsap.from(this.spinner.rotation, { y: -Math.PI, duration: 2.2, ease: 'expo.out' });
+	}
+
+	/** Centra el pan, le pone sombra de contacto y lo escala al radio común (`zoom` lo acerca) */
+	prepare(model, zoom = 1) {
+		const box = new Box3().setFromObject(model);
+		const center = box.getCenter(new Vector3());
+		model.position.sub(center);
+
+		const holder = new Group();
+		holder.add(model, this.createContactShadow(box, center));
+		holder.userData.scale = (zoom * RADIO) / box.getBoundingSphere(new Sphere()).radius;
+		holder.scale.setScalar(holder.userData.scale);
+		return holder;
+	}
+
+	/** Cambia el pan que se muestra: el actual se encoge y el nuevo crece girando */
+	show(name) {
+		const next = this.models[name];
+		if (!next || name === this.current) return;
+		const prev = this.models[this.current];
+		this.current = name;
+
+		gsap.killTweensOf([prev.scale, next.scale]);
+		this.spinner.add(next);
+		if (this.reducedMotion) {
+			this.spinner.remove(prev);
+			return;
+		}
+		gsap.to(prev.scale, {
+			x: 0,
+			y: 0,
+			z: 0,
+			duration: 0.35,
+			ease: 'power2.in',
+			onComplete: () => {
+				this.spinner.remove(prev);
+				prev.scale.setScalar(prev.userData.scale);
+			},
+		});
+		gsap.fromTo(
+			next.scale,
+			{ x: 0, y: 0, z: 0 },
+			{ x: next.userData.scale, y: next.userData.scale, z: next.userData.scale, duration: 1.1, delay: 0.2, ease: 'expo.out' },
+		);
+		gsap.fromTo(next.rotation, { y: -Math.PI * 0.6 }, { y: 0, duration: 1.4, delay: 0.2, ease: 'expo.out' });
 	}
 
 	createContactShadow(box, center) {
@@ -186,12 +237,11 @@ export class RoscaScene {
 	}
 
 	frame() {
-		if (!this.radius) return;
 		const { aspect } = this.camera;
 		const vFov = MathUtils.degToRad(this.camera.fov);
 		const hFov = 2 * Math.atan(Math.tan(vFov / 2) * aspect);
 		const fitFov = Math.min(vFov, hFov);
-		const distance = this.radius / Math.sin(fitFov / 2);
+		const distance = RADIO / Math.sin(fitFov / 2);
 		this.camera.position.copy(CAMERA_DIRECTION).multiplyScalar(distance);
 		this.camera.lookAt(0, 0, 0);
 		this.controls.update();

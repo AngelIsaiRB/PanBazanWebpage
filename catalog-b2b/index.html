@@ -10,47 +10,48 @@
 		/>
 		<!-- Página privada: se comparte por mensaje, no se enlaza desde el sitio ni se indexa -->
 		<meta name="robots" content="noindex, nofollow" />
-		<meta name="theme-color" content="#f8f0e3" />
+		<meta name="theme-color" content="#c9a574" />
 		<meta property="og:type" content="website" />
 		<meta property="og:title" content="Precios para negocios · PanBazan" />
 		<meta property="og:description" content="Lista de precios de mayoreo: pan fresco de Tlacolula para tu negocio. Precios por pieza en MXN." />
+		<meta property="og:url" content="https://panbazan.netlify.app/catalog-b2b/" />
+		<meta property="og:image" content="https://panbazan.netlify.app/og-catalogo.jpg" />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="900" />
+		<meta name="twitter:card" content="summary_large_image" />
 		<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 		<script type="module" src="/src/catalog-b2b.js"></script>
 	</head>
 
-	<body class="grain" data-page="catalog-b2b">
+	<body data-page="catalog-b2b">
 		<!-- @include header.html -->
 
 		<main id="contenido">
 			<!-- Encabezado -->
-			<section class="relative overflow-hidden pt-18">
-				<div
-					class="pointer-events-none absolute -top-48 -left-40 -z-10 size-[50rem] rounded-full bg-[radial-gradient(circle,rgb(226_162_59/0.28),transparent_65%)]"
-					aria-hidden="true"
-				></div>
+			<section class="relative overflow-hidden bg-kraft pt-18">
 
-				<div class="mx-auto grid max-w-7xl items-center gap-12 px-5 py-12 sm:px-8 lg:grid-cols-[1.05fr_1fr] lg:gap-16 lg:py-20">
+				<div class="mx-auto grid max-w-7xl items-center gap-12 px-5 py-12 sm:px-8 lg:grid-cols-[1.05fr_1fr] lg:gap-16 lg:pt-14 lg:pb-20">
 					<div>
 						<p class="eyebrow" data-hero>Mayoreo · Precios para negocios</p>
-						<h1 class="mt-6 text-[clamp(2.6rem,6vw,4.75rem)] leading-[0.98] font-medium tracking-tight text-cacao" data-hero>
-							Pan fresco para tu negocio, <em class="font-normal text-barro italic">todos los días.</em>
+						<h1 class="mt-6 text-[clamp(2.6rem,6vw,4.75rem)] leading-[1.02] tracking-tight text-cacao" data-hero>
+							Pan fresco para tu negocio, <span class="text-ate">todos los días.</span>
 						</h1>
-						<p class="mt-6 max-w-lg text-lg leading-relaxed text-tinta/75" data-hero>
+						<p class="mt-6 max-w-lg text-lg leading-relaxed text-tinta" data-hero>
 							Lista de precios para cafeterías, tiendas, restaurantes y eventos. Arma tu pedido con lo que horneamos en PanBazan y lo tenemos listo para recoger en Tlacolula.
 						</p>
 
-						<dl class="mt-10 grid max-w-lg grid-cols-3 gap-4 border-t border-tinta/10 pt-6" data-hero>
+						<dl class="mt-10 grid max-w-lg grid-cols-3 gap-4 border-t border-tinta/20 pt-6" data-hero>
 							<div>
-								<dt class="text-sm text-tinta/60">Productos</dt>
-								<dd class="mt-1 font-display text-3xl font-medium text-cacao" id="stat-count">17</dd>
+								<dt class="text-sm font-medium text-tinta">Productos</dt>
+								<dd class="mt-1 font-display text-3xl text-cacao" id="stat-count">17</dd>
 							</div>
 							<div>
-								<dt class="text-sm text-tinta/60">Desde</dt>
-								<dd class="mt-1 font-display text-3xl font-medium text-cacao" id="stat-min">$5</dd>
+								<dt class="text-sm font-medium text-tinta">Desde</dt>
+								<dd class="mt-1 font-display text-3xl text-cacao" id="stat-min">$5</dd>
 							</div>
 							<div>
-								<dt class="text-sm text-tinta/60">Horneamos</dt>
-								<dd class="mt-1 font-display text-3xl font-medium text-cacao">7 días</dd>
+								<dt class="text-sm font-medium text-tinta">Horneamos</dt>
+								<dd class="mt-1 font-display text-3xl text-cacao">7 días</dd>
 							</div>
 						</dl>
 					</div>
@@ -65,11 +66,11 @@
 							fetchpriority="high"
 						/>
 						<div
-							class="absolute -bottom-6 -left-3 grid size-28 rotate-[-8deg] place-items-center rounded-full bg-maiz text-center text-cacao shadow-xl sm:-left-6 sm:size-32"
+							class="absolute -bottom-6 -left-3 grid size-28 rotate-[-8deg] place-items-center rounded-full bg-cacao text-center text-papel shadow-xl sm:-left-6 sm:size-32"
 						>
 							<div class="leading-none">
 								<p class="text-xs font-semibold tracking-wide uppercase">Desde</p>
-								<p class="mt-1 font-display text-4xl font-semibold" id="badge-min">$5</p>
+								<p class="mt-1 font-display text-4xl" id="badge-min">$5</p>
 								<p class="mt-1 text-xs font-semibold">MXN c/u</p>
 							</div>
 						</div>
@@ -80,7 +81,7 @@
 			<!-- Filtros + productos: la barra fija se detiene al terminar el catálogo -->
 			<div>
 				<!-- Filtros -->
-				<div id="filtros" class="sticky top-18 z-30 border-y border-tinta/10 bg-crema/85 backdrop-blur-xl">
+				<div id="filtros" class="sticky top-18 z-30 border-y border-tinta/10 bg-papel/85 backdrop-blur-xl">
 					<div class="mx-auto flex max-w-7xl flex-col gap-3 px-5 py-3 sm:px-8 md:flex-row md:items-center md:justify-between">
 						<div
 							id="chips"
@@ -97,14 +98,14 @@
 									type="search"
 									placeholder="Buscar producto…"
 									autocomplete="off"
-									class="h-11 w-full rounded-full border border-tinta/15 bg-white/70 pr-4 pl-10 text-sm placeholder:text-tinta/45 focus:border-barro focus:outline-none"
+									class="h-11 w-full rounded-full border border-tinta/15 bg-white/70 pr-4 pl-10 text-sm placeholder:text-tinta/45 focus:border-ate focus:outline-none"
 								/>
 							</label>
 							<label class="relative">
 								<span class="sr-only">Ordenar por</span>
 								<select
 									id="ordenar"
-									class="h-11 appearance-none rounded-full border border-tinta/15 bg-white/70 pr-9 pl-4 text-sm focus:border-barro focus:outline-none"
+									class="h-11 appearance-none rounded-full border border-tinta/15 bg-white/70 pr-9 pl-4 text-sm focus:border-ate focus:outline-none"
 								>
 									<option value="categoria">Categoría</option>
 									<option value="precio-asc">Menor precio</option>
@@ -131,14 +132,14 @@
 			</div>
 
 			<!-- Lista de precios -->
-			<section id="lista" class="bg-cacao text-crema">
+			<section id="lista" class="bg-cacao text-papel">
 				<div class="mx-auto max-w-7xl px-5 py-24 sm:px-8 lg:py-28">
 					<div class="flex flex-col justify-between gap-6 md:flex-row md:items-end" data-reveal>
 						<div>
-							<p class="eyebrow text-maiz">Lista de mayoreo</p>
-							<h2 class="mt-5 text-4xl leading-tight font-medium tracking-tight sm:text-5xl">Precios para negocios</h2>
+							<p class="eyebrow text-kraft">Lista de mayoreo</p>
+							<h2 class="mt-4 text-4xl leading-tight sm:text-5xl">Precios para negocios</h2>
 						</div>
-						<p class="max-w-sm text-crema/65">Precios por pieza en pesos mexicanos (MXN). Confírmalos al hacer tu pedido.</p>
+						<p class="max-w-sm text-papel/65">Precios por pieza en pesos mexicanos (MXN). Confírmalos al hacer tu pedido.</p>
 					</div>
 					<div id="pizarron" class="mt-14 gap-x-16 md:columns-2" data-reveal></div>
 				</div>
@@ -148,7 +149,7 @@
 			<section class="mx-auto max-w-7xl px-5 py-24 sm:px-8">
 				<div class="grid items-center gap-8 rounded-[2rem] bg-masa p-8 sm:p-12 lg:grid-cols-[1fr_auto] lg:p-16" data-reveal>
 					<div>
-						<h2 class="text-3xl leading-tight font-medium text-cacao sm:text-4xl">¿Listo para hacer tu pedido?</h2>
+						<h2 class="text-3xl leading-tight text-cacao sm:text-4xl">¿Listo para hacer tu pedido?</h2>
 						<p class="mt-4 max-w-xl text-lg text-tinta/70">Escríbenos por WhatsApp para armar tu pedido, consultar disponibilidad por volumen o apartar pan para tus eventos. Atendemos todos los días de 06:00 a 17:00.</p>
 					</div>
 					<div class="flex flex-wrap gap-3">

@@ -1,22 +1,21 @@
-@import '@fontsource-variable/fraunces';
-@import '@fontsource-variable/inter';
+@import '@fontsource/young-serif';
+@import '@fontsource-variable/schibsted-grotesk';
 @import 'tailwindcss';
 
 @theme {
-	--font-display: 'Fraunces Variable', ui-serif, Georgia, serif;
-	--font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
+	--font-display: 'Young Serif', ui-serif, Georgia, serif;
+	--font-sans: 'Schibsted Grotesk Variable', ui-sans-serif, system-ui, sans-serif;
 
-	--color-crema: #f8f0e3;
-	--color-masa: #efdfc5;
-	--color-trigo: #e4c99d;
-	--color-maiz: #e2a23b;
-	--color-barro: #b5532a;
-	--color-barro-oscuro: #8f3d1d;
+	--color-papel: #ffffff;
+	--color-kraft: #c9a574;
+	--color-kraft-oscuro: #be9864;
+	--color-masa: #f3eadb;
 	--color-ate: #9b1f2e;
-	--color-nopal: #46602f;
+	--color-nopal: #2f6b3a;
 	--color-cacao: #2a1810;
-	--color-cacao-suave: #4b2e20;
-	--color-tinta: #3a2418;
+	--color-cacao-suave: #4a3226;
+	--color-tinta: #2a1810;
+	--color-tinta-suave: #5b4636;
 
 	--ease-horno: cubic-bezier(0.22, 1, 0.36, 1);
 
@@ -46,52 +45,48 @@
 	}
 
 	body {
-		@apply bg-crema font-sans text-tinta antialiased;
-		font-feature-settings: 'ss01', 'cv11';
+		@apply bg-papel font-sans text-tinta antialiased;
+		/* Young Serif sólo tiene un peso: sin negritas ni itálicas falsas */
+		font-synthesis: none;
 	}
 
 	h1,
 	h2,
 	h3 {
-		@apply font-display text-balance;
-		font-optical-sizing: auto;
+		@apply font-display font-normal text-balance;
 	}
 
 	::selection {
-		@apply bg-maiz text-cacao;
+		@apply bg-kraft text-cacao;
 	}
 
 	:focus-visible {
-		@apply outline-2 outline-offset-4 outline-barro;
+		@apply outline-2 outline-offset-4 outline-ate;
 	}
 }
 
 @utility btn {
-	@apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3.5 text-[0.95rem] font-semibold tracking-tight transition duration-300 ease-horno;
+	@apply inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-6 py-3 text-base font-semibold transition duration-300 ease-horno;
 }
 @utility btn-primary {
-	@apply btn bg-barro text-crema shadow-[0_12px_30px_-12px_rgb(181_83_42/0.7)] hover:-translate-y-0.5 hover:bg-barro-oscuro;
+	@apply btn bg-cacao text-papel hover:-translate-y-0.5 hover:bg-cacao-suave;
 }
 @utility btn-ghost {
-	@apply btn border border-tinta/15 bg-crema/60 text-tinta backdrop-blur hover:border-tinta/40 hover:bg-crema;
+	@apply btn border-[1.5px] border-tinta text-tinta hover:bg-tinta hover:text-papel;
 }
 @utility btn-light {
-	@apply btn bg-crema text-cacao hover:-translate-y-0.5 hover:bg-white;
+	@apply btn bg-kraft text-cacao hover:-translate-y-0.5 hover:bg-papel;
 }
 
 @utility eyebrow {
-	@apply inline-flex items-center gap-3 text-xs font-semibold tracking-[0.2em] text-barro uppercase;
-	&::before {
-		content: '';
-		@apply h-px w-8 bg-current;
-	}
+	@apply text-sm font-semibold tracking-[0.16em] text-ate uppercase;
 }
 
 @utility nav-link {
-	@apply relative py-1 text-sm font-medium text-tinta/75 transition-colors hover:text-tinta;
+	@apply relative py-1 text-[0.95rem] font-medium text-tinta;
 	&::after {
 		content: '';
-		@apply absolute inset-x-0 -bottom-0.5 h-px origin-left scale-x-0 bg-barro transition-transform duration-300 ease-horno;
+		@apply absolute inset-x-0 -bottom-0.5 h-0.5 origin-left scale-x-0 bg-ate transition-transform duration-300 ease-horno;
 	}
 	&:hover::after {
 		@apply scale-x-100;
@@ -105,27 +100,9 @@
 	}
 }
 
-@layer components {
-	/* Ruido de papel sutil sobre las superficies cálidas */
-	.grain {
-		position: relative;
-		isolation: isolate;
-	}
-	.grain::before {
-		content: '';
-		position: absolute;
-		inset: 0;
-		z-index: -1;
-		pointer-events: none;
-		opacity: 0.35;
-		mix-blend-mode: multiply;
-		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .55 0 0 0 0 .4 0 0 0 0 .25 0 0 0 .18 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-	}
-}
-
-/* Cabecera: transparente sobre el hero, sólida al hacer scroll */
+/* Cabecera: kraft sólido; al hacer scroll gana una línea y sombra */
 #site-header[data-scrolled='true'] {
-	@apply border-tinta/10 bg-crema/85 shadow-[0_8px_30px_-20px_rgb(42_24_16/0.4)] backdrop-blur-xl;
+	@apply border-tinta/15 shadow-[0_8px_30px_-20px_rgb(42_24_16/0.45)];
 }
 
 /* Lienzo 3D */
@@ -141,6 +118,80 @@
 #rosca-stage[data-loaded='true'] .stage-loader {
 	opacity: 0;
 	visibility: hidden;
+}
+
+/* Selector de pan 3D */
+#pan-3d button {
+	@apply min-h-11 rounded-full border-[1.5px] border-tinta px-5 text-sm font-semibold text-tinta transition-colors duration-300 hover:bg-tinta/10;
+}
+#pan-3d button[aria-pressed='true'] {
+	@apply bg-cacao text-papel hover:bg-cacao;
+}
+#pan-3d:not([data-ready]) {
+	@apply invisible;
+}
+
+/* Temporada de Día de Muertos (portada): papel picado y pétalos, ver src/muertos.js */
+.papel-picado {
+	position: absolute;
+	inset-inline: 0;
+	top: 4.5rem;
+	z-index: 20;
+	height: 9rem;
+	pointer-events: none;
+}
+.papel-picado .cordel {
+	position: absolute;
+	inset: 0 0 auto;
+	width: 100%;
+	height: 60px;
+	overflow: visible;
+	fill: none;
+	stroke: var(--color-cacao);
+	stroke-opacity: 0.55;
+	stroke-width: 1.5;
+	vector-effect: non-scaling-stroke;
+}
+.papel-picado .bandera {
+	position: absolute;
+}
+.papel-picado .bandera svg {
+	display: block;
+	width: 100%;
+	transform-origin: 50% 0;
+	transform: rotate(var(--giro));
+	filter: drop-shadow(0 6px 6px rgb(42 24 16 / 0.2));
+	animation: mecer var(--dur) ease-in-out var(--retraso) infinite alternate;
+}
+@keyframes mecer {
+	from {
+		transform: rotate(calc(var(--giro) - 6deg)) skewX(-3deg);
+	}
+	to {
+		transform: rotate(calc(var(--giro) + 6deg)) skewX(3deg);
+	}
+}
+.petalos {
+	position: absolute;
+	inset: 0;
+	z-index: 5;
+	overflow: hidden;
+	pointer-events: none;
+	container-type: size;
+}
+.petalo {
+	position: absolute;
+	top: -2rem;
+	width: var(--tam);
+	height: calc(var(--tam) * 1.5);
+	border-radius: 50% 50% 50% 50% / 62% 62% 38% 38%;
+	opacity: 0.85;
+	animation: caer var(--dur) linear var(--retraso) infinite;
+}
+@keyframes caer {
+	to {
+		transform: translate3d(var(--deriva), calc(100cqh + 4rem), 0) rotate(var(--vuelta));
+	}
 }
 
 @media (prefers-reduced-motion: reduce) {

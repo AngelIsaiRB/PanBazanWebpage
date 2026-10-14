@@ -30,7 +30,7 @@ mobileMenu.addEventListener('click', (e) => e.target.closest('a') && setMenu(fal
 const page = document.body.dataset.page;
 document.querySelectorAll(`[data-nav="${page}"]`).forEach((link) => {
 	link.setAttribute('aria-current', 'page');
-	link.classList.add('text-barro');
+	link.classList.add('text-ate');
 });
 
 document.querySelector('#year').textContent = new Date().getFullYear();

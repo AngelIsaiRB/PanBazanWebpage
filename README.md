@@ -1,14 +1,14 @@
 # PanBazan
 
-Sitio de la panadería PanBazan (Tlacolula, Oaxaca) con una Rosca de Reyes en 3D.
+Sitio de la panadería PanBazan (Tlacolula, Oaxaca) con panes en 3D: pan de muerto, Rosca de Reyes y conchas.
 
 ## Stack
 
 - [Vite 8](https://vite.dev) — dev server y build
 - [Tailwind CSS 4](https://tailwindcss.com) — estilos (tokens de diseño en `src/style.css`)
-- [three.js](https://threejs.org) — escena 3D de la rosca (`src/three/RoscaScene.js`, carga diferida)
+- [three.js](https://threejs.org) — escena 3D de los panes (`src/three/PanScene.js`, carga diferida)
 - [GSAP](https://gsap.com) + ScrollTrigger — animaciones de entrada y scroll
-- Fuentes autoalojadas: Fraunces e Inter (`@fontsource-variable`)
+- Fuentes autoalojadas: Young Serif (títulos) y Schibsted Grotesk (texto), vía `@fontsource`
 
 ## Uso
 
@@ -28,6 +28,8 @@ index.html              # marcado de la página
 public/                 # archivos copiados tal cual (favicon, web.config para IIS)
 src/main.js             # interacciones, animaciones y carga de la escena 3D
 src/style.css           # Tailwind + tema
-src/three/RoscaScene.js # renderer, cámara, luces y modelo
+src/three/PanScene.js   # renderer, cámara, luces y cambio de pan
+src/three/panes.js      # conchas modeladas con geometría
+src/three/panDeMuerto.js # pan de muerto con ajonjolí y carita, modelado con geometría
 src/assets/             # modelo glTF y texturas (Vite les agrega hash)
 ```

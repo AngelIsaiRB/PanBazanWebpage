@@ -1,17 +1,34 @@
 import gsap from 'gsap';
 import { reducedMotion } from './layout.js';
+import './muertos.js'; // temporada de Día de Muertos: quitar al terminar
 
-const PHRASES = ['Roscas', 'Mantequilla', '¡El mejor!', 'Conchas', 'Cazuela', 'Dulce', 'Repostería', '😍🥐🍞'];
-const OVEN_WORDS = ['Roscas', 'Conchas', 'Pan de cazuela', 'Pan de canela', 'Repostería'];
+const PHRASES = ['Roscas', 'Mantequilla', 'Conchas', 'Cazuela', 'Pan de muerto', 'Cuernos', 'Repostería'];
+const OVEN_WORDS = ['Pan de muerto', 'Conchas', 'Pan de cazuela', 'Pan de canela', 'Repostería'];
 const OPENING_HOURS = { open: 6, close: 17 };
 
-/* ---------- Rosca 3D (carga diferida para no bloquear el primer render) ---------- */
+/* ---------- Panes 3D (carga diferida para no bloquear el primer render) ---------- */
 const stage = document.querySelector('#rosca-stage');
-import('./three/RoscaScene.js')
-	.then(({ RoscaScene }) => {
-		new RoscaScene(stage, {
+const selector = document.querySelector('#pan-3d');
+const NOMBRES_3D = {
+	muerto: 'Pan de muerto de canela con su carita, en 3D girando',
+	rosca: 'Rosca de Reyes en 3D girando',
+	concha: 'Conchas de vainilla y chocolate en 3D girando',
+};
+import('./three/PanScene.js')
+	.then(({ PanScene }) => {
+		const escena = new PanScene(stage, {
 			reducedMotion,
-			onLoad: () => (stage.dataset.loaded = 'true'),
+			onLoad: () => {
+				stage.dataset.loaded = 'true';
+				selector.dataset.ready = 'true';
+			},
+		});
+		selector.addEventListener('click', (e) => {
+			const boton = e.target.closest('[data-modelo]');
+			if (!boton) return;
+			for (const b of selector.querySelectorAll('[data-modelo]')) b.setAttribute('aria-pressed', String(b === boton));
+			stage.setAttribute('aria-label', NOMBRES_3D[boton.dataset.modelo]);
+			escena.show(boton.dataset.modelo);
 		});
 	})
 	.catch((err) => {
@@ -28,12 +45,12 @@ document.querySelector('#open-status').textContent = isOpen
 	? 'Abierto ahora · hasta las 17:00'
 	: 'Cerrado ahora · abrimos a las 06:00';
 if (!isOpen) {
-	document.querySelector('#open-dot').className = 'size-2 rounded-full bg-barro';
+	document.querySelector('#open-dot').className = 'size-2 rounded-full bg-ate';
 }
 
 /* ---------- Cinta de frases ---------- */
 const marquee = document.querySelector('#marquee');
-const strip = PHRASES.map((p) => `<span>${p}</span><span class="text-maiz not-italic">✻</span>`).join('');
+const strip = PHRASES.map((p) => `<span>${p}</span><span class="text-kraft" aria-hidden="true">•</span>`).join('');
 marquee.innerHTML = strip + strip; // duplicado para el bucle infinito
 
 /* ---------- Palabra rotatoria ---------- */
