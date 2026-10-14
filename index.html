@@ -1,157 +1,289 @@
-<!DOCTYPE html>
-<html lang="es">
-<!-- 
-	hola eres alguien curioso
-	mira mi perfil: https://angelisairamirezbazan.netlify.app
-	quieres una pagina con elementos 3D ¡contactame!
- -->
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>PanBazan</title>
-	<link rel="stylesheet" href="./style/index.css">	
-	<link rel="stylesheet" href="./style/animate.min.css">
-	<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous"> -->
-	<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
-</head>
+<!doctype html>
+<html lang="es-MX">
+	<!--
+		hola eres alguien curioso
+		mira mi perfil: https://angelisairamirezbazan.netlify.app
+		quieres una pagina con elementos 3D ¡contactame!
+	-->
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>PanBazan · Panadería tradicional en Tlacolula, Oaxaca</title>
+		<meta
+			name="description"
+			content="Panadería de la familia Bazán en Tlacolula, Oaxaca. Roscas de Reyes, pan de cazuela, conchas y pan de horno tradicional. Abierto todos los días de 06:00 a 17:00."
+		/>
+		<meta name="theme-color" content="#f8f0e3" />
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content="PanBazan · Panadería tradicional en Tlacolula" />
+		<meta property="og:description" content="Cuatro generaciones horneando el verdadero pan de Tlacolula." />
+		<meta
+			property="og:image"
+			content="https://res.cloudinary.com/angelisai/image/upload/f_auto,q_auto/v1609735356/Panbazan/ycur1nkf84ni6fdyhjru.jpg"
+		/>
+		<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+		<link rel="preconnect" href="https://res.cloudinary.com" />
+		<script type="module" src="/src/main.js"></script>
+	</head>
 
-<body >
-	<section>
-	<div id="title" class="animate__animated "><h1 class="display-1 h1title animate__animated animate__backInDown ">PanBazan</h1></div>
-	<div id="subtitle" class="animate__animated "> <div class="demo"></div> </div>
-	<div id="btngo" class="animate__animated animate__fadeIn"><a href="#1">Ver mas</a></div>
-	<div id="game-container"></div>
-	</section>
+	<body class="grain" data-page="inicio">
+		<!-- @include header.html -->
 
-	<!-- sec1 -->
-	
-	<section id="1">
-		<div class="container px-4 md:px-0 max-w-6xl mx-auto mt-10 animate__animated ">
+		<main id="contenido">
+			<!-- Hero -->
+			<section id="inicio" class="relative overflow-hidden pt-18">
+				<div
+					class="pointer-events-none absolute -top-40 right-[-20%] -z-10 size-[60rem] rounded-full bg-[radial-gradient(circle,rgb(226_162_59/0.35),transparent_65%)] lg:right-[-10%]"
+					aria-hidden="true"
+				></div>
 
-			<div class="mx-0 sm:mx-6">
-	
-				<!--Nav-->
-				
-	
-				<div class="bg-black w-full text-xl md:text-2xl text-gray-800 leading-normal rounded-t">
-	
-					<!--Lead Card-->
-					<div class="flex bg-gray-600 h-full bg-white rounded overflow-hidden shadow-lg">
-						<a href="https://www.google.com/maps/place/PanBazan/@16.9591969,-96.4786227,15z/data=!4m2!3m1!1s0x0:0x9ff86b63f7c0b194?sa=X&ved=2ahUKEwjmm86bwYHuAhUCHqwKHQ_BBJcQ_BIwC3oECB4QBQ" class="flex flex-wrap no-underline hover:no-underline">
-							<div class="w-full md:w-2/3 rounded-t">
-								<img src="https://res.cloudinary.com/angelisai/image/upload/v1609739072/Panbazan/l2x3rbyd7pkytsnldltq.jpg" class="h-full w-full shadow">
+				<div class="mx-auto grid max-w-7xl items-center gap-4 px-5 sm:px-8 lg:min-h-[calc(100svh-4.5rem)] lg:grid-cols-[1.05fr_1fr] lg:gap-8">
+					<div class="relative z-10 pb-12 lg:pb-0">
+						<p class="eyebrow" data-hero>Panadería tradicional · Tlacolula, Oaxaca</p>
+
+						<h1 class="mt-6 text-[clamp(2.75rem,7vw,5.5rem)] leading-[0.95] font-medium tracking-tight text-cacao" data-hero>
+							El sabor de Tlacolula, <em class="font-normal text-barro italic">recién salido</em> del horno.
+						</h1>
+
+						<p class="mt-7 max-w-lg text-lg leading-relaxed text-tinta/75" data-hero>
+							La familia Bazán prepara el mejor pan de Tlacolula en su horno tradicional: roscas, conchas, pan de cazuela y repostería, todos los días.
+						</p>
+
+						<p class="mt-6 flex flex-wrap items-baseline gap-x-3 text-lg text-tinta/70" data-hero>
+							Hoy en el horno:
+							<span class="relative inline-grid overflow-hidden align-bottom font-display text-2xl font-semibold text-cacao italic">
+								<span id="rotator" aria-live="polite">Roscas</span>
+							</span>
+						</p>
+
+						<div class="mt-9 flex flex-wrap gap-3" data-hero>
+							<a class="btn-primary" href="#pan">
+								Ver nuestro pan
+								<svg class="size-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M8 3v10M3 8l5 5 5-5" /></svg>
+							</a>
+							<a class="btn-ghost" href="#visitanos">Horario y ubicación</a>
+						</div>
+
+						<p class="mt-8 inline-flex items-center gap-2.5 text-sm text-tinta/70" data-hero>
+							<span id="open-dot" class="size-2 rounded-full bg-nopal text-nopal/40 motion-safe:animate-pulse-dot"></span>
+							<span id="open-status">Abierto todos los días · 06:00 – 17:00</span>
+						</p>
+					</div>
+
+					<div
+						id="rosca-stage"
+						class="relative order-first -mx-5 h-[min(42svh,22rem)] sm:mx-0 sm:h-[min(55svh,30rem)] lg:order-none lg:h-[min(80svh,46rem)]"
+						role="img"
+						aria-label="Rosca de Reyes en 3D girando"
+					>
+						<div class="stage-loader absolute inset-0 grid place-items-center transition-all duration-700" aria-hidden="true">
+							<div class="flex flex-col items-center gap-3 text-sm text-tinta/60">
+								<span class="size-10 animate-spin rounded-full border-2 border-barro/20 border-t-barro"></span>
+								Horneando…
 							</div>
-	
-							<div class="w-full md:w-1/3 flex flex-col flex-grow flex-shrink">
-								<div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow-lg">
-									<p class="w-full text-gray-600 text-xs md:text-sm pt-6 px-6">Reyes</p>
-									<div class="w-full font-bold text-xl text-gray-900 px-6">👋 Las mejores Roscas de reyes </div>
-									<p class="mt-10 text-gray-800 font-serif text-base px-6 mb-5">
-										La Familia Bazán cuenta con más de un ¡lustro! preparando el mejor pan de Tlacolula.
-										En esta época la mejor Rosca de reyes que puedes probar esta <strong>aquí</strong>
-	
-	
-										<br><br>
-										
-									</p>
+						</div>
+						<p class="stage-hint pointer-events-none absolute bottom-4 left-1/2 hidden -translate-x-1/2 items-center gap-2 rounded-full bg-crema/70 px-4 py-2 text-xs font-medium text-tinta/70 backdrop-blur pointer-fine:inline-flex">
+							<svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15.5-6.2M21 12a9 9 0 0 1-15.5 6.2M18 3v3h-3M6 21v-3h3" /></svg>
+							Arrastra para girar la rosca
+						</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- Cinta -->
+			<div class="overflow-hidden border-y border-cacao bg-cacao py-5 text-crema" aria-hidden="true">
+				<div class="flex w-max animate-marquee font-display [&>*]:pr-10 text-2xl italic sm:text-3xl" id="marquee"></div>
+			</div>
+
+			<!-- Nuestro pan -->
+			<section id="pan" class="mx-auto max-w-7xl px-5 py-24 sm:px-8 lg:py-32">
+				<div class="flex flex-col justify-between gap-6 md:flex-row md:items-end" data-reveal>
+					<div>
+						<p class="eyebrow">Nuestro pan</p>
+						<h2 class="mt-5 max-w-2xl text-4xl leading-tight font-medium tracking-tight text-cacao sm:text-5xl">
+							Recetas de familia, horneadas cada mañana
+						</h2>
+					</div>
+					<p class="max-w-sm text-tinta/70">Desde las famosas conchas hasta los cuernos rellenos de nuez: el verdadero sabor del pan.</p>
+				</div>
+
+				<!-- Destacado: Rosca -->
+				<article class="group mt-14 grid overflow-hidden rounded-[2rem] bg-masa lg:grid-cols-2" data-reveal>
+					<div class="relative aspect-[4/3] overflow-hidden lg:aspect-auto">
+						<img
+							src="https://res.cloudinary.com/angelisai/image/upload/f_auto,q_auto/v1609739072/Panbazan/l2x3rbyd7pkytsnldltq.jpg"
+							alt="Rebanada de rosca de Reyes con azúcar y ate, junto a una rosca entera"
+							class="absolute inset-0 size-full object-cover transition-transform duration-[1.2s] ease-horno group-hover:scale-105"
+							width="800"
+							height="600"
+							loading="lazy"
+						/>
+						<span class="absolute top-5 left-5 rounded-full bg-crema/90 px-4 py-1.5 text-xs font-semibold tracking-wide text-ate uppercase backdrop-blur">
+							Temporada de Reyes
+						</span>
+					</div>
+					<div class="flex flex-col justify-center p-8 sm:p-12 lg:p-16">
+						<h3 class="text-3xl leading-tight font-medium text-cacao sm:text-4xl">👋 Las mejores Roscas de Reyes</h3>
+						<p class="mt-6 text-lg leading-relaxed text-tinta/75">
+							La familia Bazán cuenta con más de un ¡lustro! preparando el mejor pan de Tlacolula. En esta época, la mejor Rosca de Reyes que
+							puedes probar está <strong class="font-semibold text-cacao">aquí</strong>.
+						</p>
+						<div class="mt-9">
+							<a class="btn-primary" href="#visitanos">Encuéntranos</a>
+						</div>
+					</div>
+				</article>
+
+				<!-- Productos -->
+				<div class="mt-8 grid gap-8 md:grid-cols-2">
+					<article class="group" data-reveal>
+						<div class="overflow-hidden rounded-[2rem] bg-masa">
+							<img
+								src="https://res.cloudinary.com/angelisai/image/upload/f_auto,q_auto/v1609735356/Panbazan/ycur1nkf84ni6fdyhjru.jpg"
+								alt="Canasta con conchas de vainilla y chocolate"
+								class="aspect-[4/3] w-full object-cover transition-transform duration-[1.2s] ease-horno group-hover:scale-105"
+								width="1259"
+								height="833"
+								loading="lazy"
+							/>
+						</div>
+						<div class="mt-6 px-1">
+							<p class="text-xs font-semibold tracking-[0.2em] text-barro uppercase">Único</p>
+							<h3 class="mt-2 text-3xl font-medium text-cacao">Pan de canela</h3>
+							<p class="mt-3 max-w-md leading-relaxed text-tinta/70">
+								Desde las famosas conchas hasta los cuernos rellenos de nuez: el verdadero sabor del pan.
+							</p>
+						</div>
+					</article>
+
+					<article class="group md:mt-24" data-reveal>
+						<div class="overflow-hidden rounded-[2rem] bg-masa">
+							<img
+								src="https://res.cloudinary.com/angelisai/image/upload/f_auto,q_auto/v1609736110/Panbazan/xqbp2i9omxadhkzdc35g.jpg"
+								alt="Panes de cazuela dentro del horno y uno partido a la mitad"
+								class="aspect-[4/3] w-full object-cover transition-transform duration-[1.2s] ease-horno group-hover:scale-105"
+								width="800"
+								height="600"
+								loading="lazy"
+							/>
+						</div>
+						<div class="mt-6 px-1">
+							<p class="text-xs font-semibold tracking-[0.2em] text-barro uppercase">¡Chocolate!</p>
+							<h3 class="mt-2 text-3xl font-medium text-cacao">Pan de cazuela</h3>
+							<p class="mt-3 max-w-md leading-relaxed text-tinta/70">
+								Tlacolula es conocida por el pan de cazuela, pero no lo conoces de verdad si no has probado el de
+								<strong class="font-semibold text-cacao">PanBazan</strong>. Años de sabiduría han perfeccionado la receta que dio como resultado el
+								único y verdadero pan de cazuela tlacolulense.
+							</p>
+						</div>
+					</article>
+				</div>
+			</section>
+
+			<!-- El horno -->
+			<section id="horno" class="relative overflow-hidden bg-cacao text-crema">
+				<div class="mx-auto grid max-w-7xl items-center gap-14 px-5 py-24 sm:px-8 lg:grid-cols-2 lg:gap-20 lg:py-32">
+					<div class="relative" data-reveal>
+						<img
+							src="https://res.cloudinary.com/angelisai/image/upload/f_auto,q_auto/v1609736758/Panbazan/ik2ovqkzca1fvwtgpxva.jpg"
+							alt="Charolas de pan horneándose dentro del horno tradicional de ladrillo"
+							class="aspect-[4/3] w-full rounded-[2rem] object-cover"
+							width="800"
+							height="600"
+							loading="lazy"
+						/>
+						<div class="absolute -right-3 -bottom-8 rounded-3xl bg-maiz px-7 py-5 text-cacao shadow-2xl sm:-right-8">
+							<p class="font-display text-5xl leading-none font-semibold">4</p>
+							<p class="mt-1 text-sm font-semibold">generaciones</p>
+						</div>
+					</div>
+
+					<div data-reveal>
+						<p class="eyebrow text-maiz">Ancestral · Tradicional</p>
+						<h2 class="mt-5 text-4xl leading-tight font-medium tracking-tight sm:text-5xl">
+							Un horno lleno de anécdotas, amor <em class="text-maiz italic">y el mejor pan</em>
+						</h2>
+						<p class="mt-7 max-w-lg text-lg leading-relaxed text-crema/75">
+							El horno tradicional en el que cocinamos el pan ha pasado por <strong class="text-crema">4 generaciones</strong>. Cada pieza sale de
+							la misma bóveda de ladrillo que ha alimentado a Tlacolula por años.
+						</p>
+
+						<dl class="mt-12 grid grid-cols-3 gap-6 border-t border-crema/15 pt-8">
+							<div>
+								<dt class="text-sm text-crema/60">Abierto</dt>
+								<dd class="mt-1 font-display text-3xl font-medium">7 días</dd>
+							</div>
+							<div>
+								<dt class="text-sm text-crema/60">Desde las</dt>
+								<dd class="mt-1 font-display text-3xl font-medium">06:00</dd>
+							</div>
+							<div>
+								<dt class="text-sm text-crema/60">Hasta las</dt>
+								<dd class="mt-1 font-display text-3xl font-medium">17:00</dd>
+							</div>
+						</dl>
+					</div>
+				</div>
+			</section>
+
+			<!-- Visítanos -->
+			<section id="visitanos" class="mx-auto max-w-7xl px-5 py-24 sm:px-8 lg:py-32">
+				<div class="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14">
+					<div data-reveal>
+						<p class="eyebrow">Visítanos</p>
+						<h2 class="mt-5 text-4xl leading-tight font-medium tracking-tight text-cacao sm:text-5xl">¡Encuéntranos!</h2>
+						<p class="mt-5 max-w-md text-lg text-tinta/70">Te esperamos con pan recién horneado en Tlacolula de Matamoros, Oaxaca.</p>
+
+						<ul class="mt-10 divide-y divide-tinta/10 border-y border-tinta/10">
+							<li class="flex items-start gap-4 py-5">
+								<svg class="mt-0.5 size-5 shrink-0 text-barro" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></svg>
+								<div>
+									<p class="font-semibold text-cacao">Horario</p>
+									<p class="text-tinta/70">Todos los días · 06:00 – 17:00</p>
 								</div>
-	
-							</div>
-	
-						</a>
-					</div>
-					<!--/Lead Card-->
-	
-	
-					<!--Posts Container-->
-					<div class="flex flex-wrap justify-between pt-12 -mx-6">
-	
-						<!--1/3 col -->
-						<div class="w-full md:w-1/3 p-5 flex flex-col flex-grow flex-shrink">
-							<div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow-lg">
-								<a href="https://res.cloudinary.com/angelisai/image/upload/v1609735356/Panbazan/ycur1nkf84ni6fdyhjru.jpg" class="flex flex-wrap no-underline hover:no-underline">
-									<img src="https://res.cloudinary.com/angelisai/image/upload/v1609735356/Panbazan/ycur1nkf84ni6fdyhjru.jpg" class="h-64 w-full rounded-t pb-6">
-									<p class="w-full text-gray-600 text-xs md:text-sm px-6">Unico</p>
-									<div class="w-full font-bold text-xl text-gray-900 px-6">Pan de canela</div>
-									<p class="mt-10 text-gray-800 font-serif text-base px-6 mb-5">
-										Desde las famosas conchas, hasta los cuernos rellenos de nuez, el verdadero sabor del pan
-									</p>
-								</a>
-							</div>
-							
-						</div>
-	
-	
-						<!--1/3 col -->
-						<div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
-							<div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow-lg">
-								<a href="https://res.cloudinary.com/angelisai/image/upload/v1609736110/Panbazan/xqbp2i9omxadhkzdc35g.jpg" class="flex flex-wrap no-underline hover:no-underline">
-									<img src="https://res.cloudinary.com/angelisai/image/upload/v1609736110/Panbazan/xqbp2i9omxadhkzdc35g.jpg" class="h-64 w-full rounded-t pb-6">
-									<p class="w-full text-gray-600 text-xs md:text-sm px-6">¡Chocolate!</p>
-									<div class="w-full font-bold text-xl text-gray-900 px-6">Pan de Cazuela</div>
-									<p class="mt-10 text-gray-800 font-serif text-base px-6 mb-5">
-										Tlacolula es conocida por el pan de Cazuela, pero no lo conoces de verdad si no has probado 
-										el de <strong>PanBazan</strong>. 
-										Años de sabiduria ha perfecionando la receta que dio como resultado el único y 
-										verdadero pan de cazuela Tlacolulense
-										
-									</p>
-								</a>
-							</div>
-						</div>
-	
-						<!--1/3 col -->
-						<div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
-							<div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow-lg">
-								<a href="https://res.cloudinary.com/angelisai/image/upload/v1609736758/Panbazan/ik2ovqkzca1fvwtgpxva.jpg" class="flex flex-wrap no-underline hover:no-underline">
-									<img src="https://res.cloudinary.com/angelisai/image/upload/v1609736758/Panbazan/ik2ovqkzca1fvwtgpxva.jpg" class="h-64 w-full rounded-t pb-6">
-									<p class="w-full text-gray-600 text-xs md:text-sm px-6">Ancestral</p>
-									<div class="w-full  font-bold text-xl text-gray-900 px-6">Tradicional</div>
-									<p class="mt-10 text-gray-800 font-serif text-base px-6 mb-5">
-										El horno tradicional en el cual cocinamos el pan ha pasado por <strong>4</strong> generaciones!
-										está lleno de anécdotas, amor y el mejor pan
-	
-									</p>
-								</a>
-							</div>
-							</div>
-					</div>
-					
-				</div>
-			</div>
-			<div class="w-full -mt-6 pt-32 pb-24 px-12 text-center bg-black text-white">
-				<h2 class="text-4xl mb-6">Encuentranos!</h2>
-				<p class="font-sans text-m mx-auto max-w-xl leading-loose mb-5"> <strong>Horario:</strong> todos los dias abierto! (06:00 - 17:00) </p>			
-				<div class="">
-					<iframe   class="w-full"  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d954.0788707265477!2d-96.47847091774953!3d16.959025224391265!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85c732311729d283%3A0x9ff86b63f7c0b194!2sPanBazan!5e0!3m2!1ses!2smx!4v1609738160411!5m2!1ses!2smx" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
-				</div>
-			
-			</div>
-	
-		</div>
-	</section>
-	<!--  -->
+							</li>
+							<li class="flex items-start gap-4 py-5">
+								<svg class="mt-0.5 size-5 shrink-0 text-barro" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 20.5l1.2-4.1A8.5 8.5 0 1 1 7.9 19.4z" /><path d="M9 8.6c.2 3.3 3 6.2 6.4 6.4l1.1-1.8-2.1-1-.9.8a4.6 4.6 0 0 1-2.5-2.5l.8-.9-1-2.1z" /></svg>
+								<div>
+									<p class="font-semibold text-cacao">WhatsApp</p>
+									<a class="text-tinta/70 underline-offset-4 hover:text-barro hover:underline" href="https://wa.me/5219514780965?text=Hola%20PanBazan%2C%20quiero%20hacer%20un%20pedido." target="_blank" rel="noopener">+52 951 478 09 65</a>
+								</div>
+							</li>
+							<li class="flex items-start gap-4 py-5">
+								<svg class="mt-0.5 size-5 shrink-0 text-barro" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m3 7 9 6 9-6" /></svg>
+								<div>
+									<p class="font-semibold text-cacao">Correo</p>
+									<a class="break-all text-tinta/70 underline-offset-4 hover:text-barro hover:underline" href="mailto:qwerasdffdeswa@live.com">qwerasdffdeswa@live.com</a>
+								</div>
+							</li>
+						</ul>
 
-	<footer class="relative bg-white px-4 sm:px-8 lg:px-16 xl:px-40 2xl:px-64 pt-12 pb-10 text-center sm:text-left">
-		<div class="flex flex-col sm:flex-row sm:flex-wrap">
-		
-		  <div class="mt-8 sm:w-1/2 sm:mt-12 lg:w-1/5 lg:mt-0">
-			<h6 class="text-sm text-gray-600 font-bold uppercase">Contacto</h6>
-			<ul class="mt-4">
-			  <li><a href="mailto:qwerasdffdeswa@live.com">qwerasdffdeswa@live.com</a></li>
-			  <li class="mt-2"><a href="https://www.google.com/maps/place/PanBazan/@16.9591969,-96.4786227,15z/data=!4m2!3m1!1s0x0:0x9ff86b63f7c0b194?sa=X&ved=2ahUKEwjmm86bwYHuAhUCHqwKHQ_BBJcQ_BIwC3oECB4QBQ">+52 951 478 09 65</a></li>
-			</ul>
-		  </div>
-  
-		  
-		</div>
-  
-		<div class="mt-16">
-		  <hr class="mb-8">
-		  <p class="text-sm text-gray-600">2021 © Panbazan.</p>
-		</div>
-	  </footer>
-</body>
+						<div class="mt-9 flex flex-wrap gap-3">
+							<a class="btn-primary" href="https://www.google.com/maps/place/PanBazan/@16.9591969,-96.4786227,17z/data=!4m2!3m1!1s0x0:0x9ff86b63f7c0b194" target="_blank" rel="noopener">
+								Abrir en Google Maps
+								<svg class="size-4" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 11 11 5M6 5h5v5" /></svg>
+							</a>
+							<a class="btn-ghost" href="https://wa.me/5219514780965?text=Hola%20PanBazan%2C%20quiero%20hacer%20un%20pedido." target="_blank" rel="noopener">
+								<svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 20.5l1.2-4.1A8.5 8.5 0 1 1 7.9 19.4z" /><path d="M9 8.6c.2 3.3 3 6.2 6.4 6.4l1.1-1.8-2.1-1-.9.8a4.6 4.6 0 0 1-2.5-2.5l.8-.9-1-2.1z" /></svg>
+								Escríbenos por WhatsApp
+							</a>
+						</div>
+					</div>
 
+					<div class="overflow-hidden rounded-[2rem] border border-tinta/10 bg-masa shadow-[0_30px_60px_-30px_rgb(42_24_16/0.35)]" data-reveal>
+						<iframe
+							class="h-[26rem] w-full lg:h-full lg:min-h-[32rem]"
+							title="Mapa de ubicación de PanBazan en Tlacolula, Oaxaca"
+							src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d954.0788707265477!2d-96.47847091774953!3d16.959025224391265!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85c732311729d283%3A0x9ff86b63f7c0b194!2sPanBazan!5e0!3m2!1ses!2smx!4v1609738160411!5m2!1ses!2smx"
+							loading="lazy"
+							referrerpolicy="no-referrer-when-downgrade"
+							allowfullscreen
+						></iframe>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<!-- @include footer.html -->
+	</body>
 </html>
