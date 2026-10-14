@@ -113,7 +113,7 @@ export const PANES = [
 	},
 	{
 		nombre: 'Pan de muerto de mantequilla',
-		precio: 45,
+		precio: 50,
 		categoria: 'tradicional',
 		temporada: true,
 		descripcion: 'Pan de muerto oaxaqueño de mantequilla, suave y dorado, con su carita tradicional.',
