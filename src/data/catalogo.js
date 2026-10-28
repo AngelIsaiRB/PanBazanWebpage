@@ -5,6 +5,7 @@
  * - `imagen`: foto real del pan (src/assets/catalogo/*.webp)
  * - si no hay foto, se usa una ilustración (src/assets/catalogo/ilustraciones/*.svg)
  * - `temporada: true`: muestra la etiqueta "Solo en temporada"
+ * - categoría `temporada`: va hasta arriba; al terminar la temporada, borra esos panes
  */
 import conchitasPequenas from '../assets/catalogo/conchitas-pequenas.webp';
 import conchasMantequilla from '../assets/catalogo/conchas-mantequilla.webp';
@@ -28,6 +29,7 @@ import panqueNaranja from '../assets/catalogo/ilustraciones/panque-naranja.svg';
 import panqueNuez from '../assets/catalogo/ilustraciones/panque-nuez.svg';
 
 export const CATEGORIAS = [
+	{ id: 'temporada', nombre: 'De temporada' }, // primero: lo de la temporada actual
 	{ id: 'conchas', nombre: 'Conchas' },
 	{ id: 'tradicional', nombre: 'Pan tradicional' },
 	{ id: 'cuernos', nombre: 'Cuernos' },
@@ -36,6 +38,42 @@ export const CATEGORIAS = [
 ];
 
 export const PANES = [
+	// De temporada: aparecen primero en el catálogo y en la lista de precios
+	{
+		nombre: 'Pan de muerto de canela',
+		precio: 25,
+		categoria: 'temporada',
+		temporada: true,
+		descripcion: 'Pan de muerto oaxaqueño de canela, cubierto de ajonjolí y con su carita tradicional.',
+		imagen: panMuertoCanela,
+	},
+	{
+		nombre: 'Pan de muerto de mantequilla',
+		precio: 50,
+		categoria: 'temporada',
+		temporada: true,
+		descripcion: 'Pan de muerto oaxaqueño de mantequilla, suave y dorado, con su carita tradicional.',
+		imagen: panMuertoMantequilla,
+	},
+	{
+		nombre: 'Pan de muerto de mantequilla mediano',
+		precio: 110,
+		categoria: 'temporada',
+		tamano: 'Mediano',
+		temporada: true,
+		descripcion: 'Pan de muerto de mantequilla en tamaño mediano, con su carita tradicional. Ideal para la ofrenda familiar.',
+		imagen: panMuertoMantequilla,
+	},
+	{
+		nombre: 'Pan de muerto de mantequilla grande',
+		precio: 210,
+		categoria: 'temporada',
+		tamano: 'Grande',
+		temporada: true,
+		descripcion: 'Pan de muerto de mantequilla grande, con su carita tradicional, para lucir en el altar y compartir.',
+		imagen: panMuertoMantequilla,
+	},
+
 	// Conchas
 	{
 		nombre: 'Conchitas pequeñas',
@@ -102,22 +140,6 @@ export const PANES = [
 		tamano: 'Grande',
 		descripcion: 'Pan redondo, suave y esponjoso.',
 		ilustracion: pelonas,
-	},
-	{
-		nombre: 'Pan de muerto de canela',
-		precio: 25,
-		categoria: 'tradicional',
-		temporada: true,
-		descripcion: 'Pan de muerto oaxaqueño de canela, cubierto de ajonjolí y con su carita tradicional.',
-		imagen: panMuertoCanela,
-	},
-	{
-		nombre: 'Pan de muerto de mantequilla',
-		precio: 50,
-		categoria: 'tradicional',
-		temporada: true,
-		descripcion: 'Pan de muerto oaxaqueño de mantequilla, suave y dorado, con su carita tradicional.',
-		imagen: panMuertoMantequilla,
 	},
 
 	// Cuernos
